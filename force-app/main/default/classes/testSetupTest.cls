@@ -7,8 +7,10 @@ public with sharing class testSetupTest {
     }
     @isTest
     private static void updatePhone(){
+        test.startTest();
         Account acc=[Select Id,Name,Phone from Account where Name='Ankit'];
         acc.Phone='8899031727';
         update acc;
+        test.stopTest();
     }
 }
