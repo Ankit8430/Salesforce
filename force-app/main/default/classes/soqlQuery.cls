@@ -20,4 +20,13 @@ public with sharing class soqlQuery {
             System.debug('Id --> '+feed.id+' Name --> '+feed.Name+' Customer --> '+feed.Customer__c+' Customer Name --> '+feed.Customer__r.NAme);
         }
     }
+    public static void customObjectPtoC(){
+        List<Account__c>accList=[Select Id,Name,Total_Feedback_Rating__c,(Select Name from Feedbacks__r) from Account__c];
+        for(Account__C acc:accList){
+            System.debug('Name => '+acc.Name+' Total Feedback Rating => '+acc.Total_Feedback_Rating__c);
+            for(Feedback__c feed:acc.Feedbacks__r){
+                System.debug(feed.Name);
+            }
+        }
+    }
 }
