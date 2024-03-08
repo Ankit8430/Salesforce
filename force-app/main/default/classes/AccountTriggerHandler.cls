@@ -1,6 +1,48 @@
 public class AccountTriggerHandler {
-    
-   /* public static void updateClientContactFieldOnAccount(List<Account>accList){
+    public static void updateMaillingAddressRelatedAllContact(List<Account> accList,Map<Id,Account>accMap){
+        Set<Id>accIds=new Set<Id>();
+        for(Account acc:accList){
+            if(accMap!=null && acc.BillingCity!=accMap.get(acc.id).BillingCity){
+                accIds.add(acc.id);
+            }
+        }
+        List<Contact> conList=[Select Id,AccountId,Account.BillingCity from Contact where AccountId IN:accIds];
+        List<Contact> updateConList=new List<Contact>();
+        for(Contact con:conList){
+            updateConList.add(new Contact(Id=con.id,MailingCity=con.Account.BillingCity));
+        }
+        if(!updateConList.isEmpty()){
+            update updateConList;
+        }
+    }
+    /*public static void sendEmailToAllContactWhenAccountTypeIsUpdate(List<Account>accList,Map<Id,Account>accMap){
+        Set<Id>accIds=new Set<Id>();
+        for(Account acc:accList){
+            if(accMap!=null && acc.Type!=accMap.get(acc.id).Type){
+                accIds.add(acc.id);
+            }
+        }
+        List<Contact>conList=[Select Id,Email,AccountId,Account.Name from Contact where AccountId IN:accIds];
+        System.debug(conList);
+        List<Messaging.Email> emailList=new List<Messaging.Email>();
+        for(Contact con:conList){
+            if(con.Email!=null){
+                Messaging.SingleEmailMessage emailMsg=new Messaging.SingleEmailMessage();
+                String[] toAddress=new String[]{con.Email};
+                emailMsg.setToAddresses(toAddress);
+                String emailSub='Account Update Info';
+                emailMsg.setSubject(emailSub);
+                String display='Ankit Gupta';
+                emailMsg.setSenderDisplayName(display);
+                String content='Your account information has been updated successfully. <br/><br/>'+
+                   				'Account Name:'+con.Account.Name;
+                emailMsg.setHtmlBody(content);
+                emailList.add(emailMsg);
+            }
+        }
+        Messaging.sendEmail(emailList);
+    }
+   public static void updateClientContactFieldOnAccount(List<Account>accList){
         List<Contact> conList=new List<Contact>();
         List<Account>accUpdateList=new List<Account>();
         Map<Id,Account>accMap=new Map<Id,Account>();
