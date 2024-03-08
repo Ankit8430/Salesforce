@@ -19,7 +19,8 @@ trigger AccountTrigger on Account (before insert,after insert,before update,afte
            // AccountTriggerHandler.afterInsert(Trigger.new);
         }
         if(Trigger.isUpdate){
-            AccountTriggerHandler.updateMaillingAddressRelatedAllContact(Trigger.new,Trigger.oldMap);
+            AccountTriggerHandler.updateMultiPicklistContactAccToAccount(Trigger.new,Trigger.oldMap);
+            //AccountTriggerHandler.updateMaillingAddressRelatedAllContact(Trigger.new,Trigger.oldMap);
    			//AccountTriggerHandler.sendEmailToAllContactWhenAccountTypeIsUpdate(Trigger.new,Trigger.oldMap);
             //AccountTriggerHandler.updateAlltheOpportunity(Trigger.new,Trigger.oldMap);
             //AccountTriggerHandler.afterUpdate(Trigger.new,Trigger.oldMap);

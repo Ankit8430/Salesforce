@@ -1,5 +1,20 @@
 public class AccountTriggerHandler {
-    public static void updateMaillingAddressRelatedAllContact(List<Account> accList,Map<Id,Account>accMap){
+    public static void updateMultiPicklistContactAccToAccount(List<Account>accList,Map<Id,Account>accMap){
+        Set<Id>accIds=new Set<Id>();
+        for(Account acc:accList){
+            if(accMap!=null && acc.MultiSelectPickList__c!=accMap.get(acc.id).MultiSelectPickList__c){
+                accIds.add(acc.id);
+            }
+        }
+        List<Contact> conList=[Select Id,Account.MultiSelectPickList__c,AccountID from Contact where AccountId IN:accIds];
+        for(Contact con:conList){
+            con.MultiSelectPickList__c=con.Account.MultiSelectPickList__c;
+        }
+        if(!conList.isEmpty()){
+            update conList;
+        }
+    }
+    /*public static void updateMaillingAddressRelatedAllContact(List<Account> accList,Map<Id,Account>accMap){
         Set<Id>accIds=new Set<Id>();
         for(Account acc:accList){
             if(accMap!=null && acc.BillingCity!=accMap.get(acc.id).BillingCity){
@@ -14,7 +29,7 @@ public class AccountTriggerHandler {
             update conList;
         }
     }
-    /*public static void sendEmailToAllContactWhenAccountTypeIsUpdate(List<Account>accList,Map<Id,Account>accMap){
+    public static void sendEmailToAllContactWhenAccountTypeIsUpdate(List<Account>accList,Map<Id,Account>accMap){
         Set<Id>accIds=new Set<Id>();
         for(Account acc:accList){
             if(accMap!=null && acc.Type!=accMap.get(acc.id).Type){

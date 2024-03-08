@@ -1,6 +1,32 @@
 @isTest
 public class AccountTriggerHandlerTest {
     @isTest
+    private static void updateMultiPicklistContactAccToAccount(){
+        List<Account>accList=new List<Account>();
+        List<Contact>conList=new List<Contact>();
+        
+        for(Integer i=0;i<5;i++){
+            accList.add(new Account(Name='Ankit'+i));
+        }
+        if(!accList.isEmpty()){
+            insert accList;
+        }
+        for(Account acc:accList){
+            conList.add(new Contact(LastName=acc.Name,AccountId=acc.id));
+        }
+        if(!conList.isEmpty()){
+            insert conList;
+        }
+        Test.startTest();
+        for(Account acc:accList){
+            acc.MultiSelectPickList__c='A;B';
+        }
+        if(!accList.isEmpty()){
+            update accList;
+        }
+        Test.stopTest();
+    }
+    /*@isTest
     private static void updateMaillingAddressRelatedAllContact(){
         List<Account> accList=new List<Account>();
         List<Contact>conList=new List<Contact>();
@@ -25,7 +51,7 @@ public class AccountTriggerHandlerTest {
         }
         Test.stopTest();
     }
-    /*@isTest
+    @isTest
     private static void sendEmailToAllContactWhenAccountTypeIsUpdateTest(){
         List<Account>accList=new List<Account>();
         for(Integer i=0;i<5;i++){
