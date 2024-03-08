@@ -7,12 +7,11 @@ public class AccountTriggerHandler {
             }
         }
         List<Contact> conList=[Select Id,AccountId,Account.BillingCity from Contact where AccountId IN:accIds];
-        List<Contact> updateConList=new List<Contact>();
         for(Contact con:conList){
-            updateConList.add(new Contact(Id=con.id,MailingCity=con.Account.BillingCity));
+            con.MailingCity=con.Account.BillingCity;
         }
-        if(!updateConList.isEmpty()){
-            update updateConList;
+        if(!conList.isEmpty()){
+            update conList;
         }
     }
     /*public static void sendEmailToAllContactWhenAccountTypeIsUpdate(List<Account>accList,Map<Id,Account>accMap){
