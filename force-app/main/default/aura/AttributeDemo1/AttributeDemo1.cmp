@@ -1,0 +1,3 @@
+<aura:component >
+    <c:AttributeDemo Var1="Demo From Attribute Demo1"/>
+</aura:component>

@@ -1,0 +1,24 @@
+<aura:component >
+    <!--Attribute-->
+    <aura:attribute name="Var1" type="String" default="Test String"/>
+    <aura:attribute name="newAcc" type="Account" default="{'sObjectType':'Account','Name':'Test Account'}"/>
+    <aura:attribute name="arrayDemo" type="String[]" default="['v1','v2','v3']"/>
+    <aura:attribute name="listDemo" type="List" default="['List1','List2','List3']"/>
+    <aura:attribute name="setDemo" type="Set" default="['set1','set2']"/>
+    <aura:attribute name="mapDemo" type="Map" default="{a:'Map1',b:'Map2'}"/>
+    <aura:attribute name="jsObject" type="Object"/>
+    <aura:attribute name="userData" type="LCDemoWrapper.WrapperTest"/>
+    <!--Handler-->
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <h1>
+        Component Attribute's Value: {!v.Var1}<br/><br/>
+        Account Name: {!v.newAcc.Name}<br/><br/>
+        Array Value: {!v.arrayDemo[0]}<br/><br/>
+        List Value:{!v.listDemo[0]} {!v.listDemo[1]}<br/><br/>
+        Set Value:{!v.setDemo[0]}<br/><br/>
+        Map Value: {!v.mapDemo.a}<br/><br/>
+        Length of List:{!v.listDemo.length}<br/><br/>
+        jsObject Object Value:  {!v.jsObject.name} --- {!v.jsObject.email}<br/><br/>
+        User Data Value:{!v.userData.myString} --- {!v.userData.myInteger}<br/><br/>
+    </h1>
+</aura:component>
