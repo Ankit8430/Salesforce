@@ -1,0 +1,8 @@
+<aura:component >
+	<aura:attribute name="vfHost" type="String"
+                    default="mirketa150-dev-ed--c.develop.vf.force.com"/>
+   <!--Domain for you VF page: mirketa150-dev-edc.develop.vf.force.com-->
+    <iframe aura:id="vfFrame"
+            src="{!'https://'+v.vfHost+'/apex/MyVFPage'}"
+            height="500" width="500"/>
+</aura:component>
