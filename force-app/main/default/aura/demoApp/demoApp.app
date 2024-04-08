@@ -1,3 +1,3 @@
 <aura:application  extends="force:slds">
-    <c:container/>
+    <c:BasicAura/>
 </aura:application>
