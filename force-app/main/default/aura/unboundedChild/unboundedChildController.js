@@ -1,5 +1,5 @@
 ({
 	updateChildVar : function(component, event, helper) {
-		component.set("v.childVar","Updated child Attribute");
+		component.set("v.childAttribute","Update Child Variable");
 	}
 })

@@ -8,11 +8,5 @@
             }
         });
         $A.enqueueAction(action);
-	},
-    clickMe1:function(component,event,helper){
-        component.set("v.msg","Click Me 1");
-    },
-    clickMe2:function(component,event,helper){
-        component.set("v.msg","Click Me 2");
-    }
+	}
 })
