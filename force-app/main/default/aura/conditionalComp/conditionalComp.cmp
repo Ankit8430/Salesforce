@@ -1,0 +1,25 @@
+<aura:component >
+    <aura:attribute name="flag1" type="Boolean" default="false"/>
+    <aura:attribute name="flag2" type="Boolean" default="false"/>
+    <aura:attribute name="flagHeader" type="boolean" default="false"/>
+    Enter a Marks: <ui:inputText aura:id="inputCmp"/>
+    <aura:if isTrue="{!v.flagHeader}">
+         <aura:if isTrue="{!v.flag1}">
+            <div>
+                Marks is greater or equal to 75%
+            </div>
+            <aura:if isTrue="{!v.flag2}">
+               <div>
+                 Marks is greater or equal to 50%
+               </div>
+            </aura:if>
+              <aura:set attribute="else">
+               <div>
+                 Marks is greater or equal to 25% or fail
+               </div>
+            </aura:set>
+        </aura:if>
+    </aura:if>    
+    <br/><br/>
+    <lightning:button label="ClickMe" onclick="{!c.doAction}"/>
+</aura:component>

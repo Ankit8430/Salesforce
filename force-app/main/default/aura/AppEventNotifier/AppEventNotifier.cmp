@@ -1,0 +1,7 @@
+<aura:component >
+    <!--Step2 :Register Application Event.-AppEventNotifier-->
+    <aura:registerEvent name="appEvent" type="c:ApplicationEvent"/>
+    <h1> Application Event Notifier </h1>
+    <!--Step 3: Fire Application Event.-->
+    <ui:button label="Fire Application Event" press="{!c.fireAppEvent}"/>
+</aura:component>

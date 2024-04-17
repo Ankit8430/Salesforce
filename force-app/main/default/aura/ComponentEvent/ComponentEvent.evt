@@ -1,0 +1,5 @@
+<!-- Step 1: Create Custom Component Events.-->
+<aura:event type="Component" description="Event template">
+    <aura:attribute name="message" type="String"/>
+    <aura:attribute name="label" type="String"/>
+</aura:event>
