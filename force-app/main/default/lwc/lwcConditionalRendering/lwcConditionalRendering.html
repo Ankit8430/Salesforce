@@ -1,0 +1,14 @@
+<template>
+    <lightning-card title="Conditional Rendering">
+        <div class="slds-var-m-around_medium">
+            <lightning-input type="number" label="Enter Number" onchange={changeHandler}></lightning-input>
+            <lightning-button variant="brand" label="Check it is Even or Odd" title="Check it is Even or Odd" onclick={handleClick}></lightning-button>
+            <template if:true={isEven}>
+                <div>Even Number</div>
+            </template>
+            <template if:false={isEven}>
+                <div>Odd Number</div>
+            </template>
+        </div>
+    </lightning-card>
+</template>
