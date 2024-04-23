@@ -1,0 +1,26 @@
+<template>
+    <lightning-card title="Looping LWC">
+        <div class="slds-var-m-around_medium">
+            <ul class="slds-list_dotted">
+            <template for:each={carList} for:item="car">
+                <li key={car}>{car}</li>
+            </template>
+            </ul>
+        </div>
+    </lightning-card>
+    <lightning-card title="Iteration LWC">
+        <div class="slds-var-m-around_medium">
+            <ul>
+                <template iterator:ceo={ceoList}>
+                    <div key={ceo.value.id} class="slds-has-dividers_around-space">
+                        <li class="slds-item">
+                            <strong>{ceo.value.company}, </strong>
+                            {ceo.value.Name}
+                        </li>
+                    </div>
+                </template>
+                <strong>Thanks for reading list</strong>
+            </ul>
+        </div>
+    </lightning-card>
+</template>
